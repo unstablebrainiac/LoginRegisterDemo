@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,7 +50,13 @@ public class LoginActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             String authToken = response.body().getToken();
                             createAccount(email, password, authToken);
-                            Toast.makeText(LoginActivity.this, "Check", Toast.LENGTH_SHORT).show();
+                            Bundle bundle = new Bundle();
+                            bundle.putString(AccountManager.KEY_ACCOUNT_NAME, email);
+                            bundle.putString(AccountManager.KEY_ACCOUNT_TYPE, getResources().getString(R.string.account_type));
+                            bundle.putString(AccountManager.KEY_AUTHTOKEN, authToken);
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            intent.putExtra("User Credentials", bundle);
+                            startActivity(intent);
                         }
                         else {
                             Log.d("TAG", "onResponse: " + response.code());
