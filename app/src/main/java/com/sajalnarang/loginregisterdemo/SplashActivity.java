@@ -46,6 +46,7 @@ public class SplashActivity extends AppCompatActivity {
                         Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                         intent.putExtra("User Credentials", bundle);
                         startActivity(intent);
+                        finish();
                     } catch (OperationCanceledException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
