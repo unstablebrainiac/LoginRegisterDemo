@@ -11,4 +11,7 @@ import retrofit2.http.Query;
 public interface RetrofitInterface {
     @POST("/auth/user_login")
     Call<LoginResponse> login(@Query("email") String email, @Query("password") String password);
+
+    @POST("/register/addUser")
+    Call<RegisterResponse> registerUser(@Query("user_name") String name, @Query("user_contact") String phone, @Query("user_email") String email, @Query("user_password") String password, @Query("user_age") int age, @Query("user_gender") int gender);
 }
